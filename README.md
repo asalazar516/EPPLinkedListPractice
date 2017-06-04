@@ -5,7 +5,8 @@ Instructions to view program on Github:
 
 Instructions to download program on Github:
 1. Click clone or download prompt
-2. Download file
-3. Open the project in your specific IDE
-4. In the downloaded folder: Enter the MoreLinkedList folder
-5. Click on the MoreLinkedList.vcxproj
+2. Download ZIP file
+3. Extract ZIP filer
+4. Open the project on your specific C++ IDE
+5. In the downloaded folder: Enter the MoreLinkedList folder
+6. Click on the MoreLinkedList.vcxproj
