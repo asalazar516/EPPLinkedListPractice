@@ -66,6 +66,9 @@ void InsertAtBack(NodeType * &headPtr, int value);
 
 NodeType * Merged(NodeType * &headPtr, NodeType * &headPtr2);
 
+//Recursively print odd position in the list
+void OddPrint(NodeType * headPtr, int counter);
+
 //======================================================================
 
 //BEGIN MAIN()==========================================================
@@ -117,6 +120,12 @@ int main()
 
 	cout << "NULL\n" << endl;
 
+	cout << "\n Print list 1, but only in the odd position placed.\n";
+
+	OddPrint(List, userSize);
+
+	cout << "NULL\n";
+
 	//Merge List
 	List3 = Merged(List, List2);
 
@@ -152,6 +161,7 @@ int main()
 	cout << "NULL\n\nOriginal list has been DELETED!\n";
 	cout << endl;
 
+	cout << "Let's check if the original list is empty.\n";
 	print(List);
 
 	cout << "Here is the copy list again\n";
@@ -279,19 +289,6 @@ const NodeType * copy(NodeType * headptr)
 	
 }
 
-NodeType * reverse(NodeType *  headPtr)
-{
-	if (headPtr->nextPtr == NULL) {
-		return headPtr;
-	}
-	else {
-		NodeType * t = reverse(headPtr->nextPtr); // Now p->next is reversed, t is the new head.
-		headPtr->nextPtr->nextPtr = headPtr; // p->next is the current tail, so p becomes the new tail.
-		headPtr->nextPtr = NULL;
-		return t;
-	}
-}
-
 void CopyHelper(NodeType * &headPtr, int value)
 {
 	if (headPtr == NULL || headPtr->nextPtr == NULL)
@@ -322,6 +319,20 @@ void InsertAtBack(NodeType *& headPtr, int value)
 
 }
 
+NodeType * reverse(NodeType *  headPtr)
+{
+	if (headPtr->nextPtr == NULL) {
+		return headPtr;
+	}
+	else {
+		NodeType * t = reverse(headPtr->nextPtr); // Now p->next is reversed, t is the new head.
+		headPtr->nextPtr->nextPtr = headPtr; // p->next is the current tail, so p becomes the new tail.
+		headPtr->nextPtr = NULL;
+		return t;
+	}
+}
+
+
 NodeType * Merged(NodeType * &headPtr, NodeType * &headPtr2)
 {
 	NodeType * currentPtr = new NodeType;
@@ -344,4 +355,24 @@ NodeType * Merged(NodeType * &headPtr, NodeType * &headPtr2)
 	}
 	return headPtr;
 }
+
+void OddPrint(NodeType * headPtr, int counter)
+{
+	if (headPtr == NULL)
+	{
+		;
+	}
+	if (headPtr != NULL && counter % 2 == 0)
+	{
+		counter = counter--;
+		OddPrint(headPtr->nextPtr, counter);
+	}
+	else if (headPtr != NULL && counter % 2 == 1)
+	{
+		cout << "[ " << headPtr->info << " ]->";
+		counter = counter--;
+		OddPrint(headPtr->nextPtr, counter);
+	}
+}
+
 //======================================================================
